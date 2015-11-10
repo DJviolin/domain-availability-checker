@@ -6,7 +6,6 @@
 
 # http://linuxconfig.org/check-domain-name-availability-with-bash-and-whois
 # USAGE
-# $ cd /c/www/html/domain-check/bash
 # Make script executable:
 # $ chmod +x check-domain-availability.sh
 # Execute script:

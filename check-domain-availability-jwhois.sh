@@ -6,15 +6,14 @@
 
 # http://linuxconfig.org/check-domain-name-availability-with-bash-and-whois
 # USAGE
-# $ cd /c/www/html/domain-check/bash
 # Make script executable:
-# $ chmod +x check-domain-availability.sh
+# $ chmod +x check-domain-availability-jwhois.sh
 # Execute script:
-# $ ./check-domain-availability.sh foo1 foo2
+# $ ./check-domain-availability-jwhois.sh foo1 foo2
 
-# WINDOWS: $ whois com. whois.iana.org
-# LINUX: $ whois -h whois.iana.org com
-# BASIC USAGE: whois domain.com
+# WINDOWS: $ jwhois com. whois.iana.org
+# LINUX: $ jwhois -h whois.iana.org com
+# BASIC USAGE: jwhois domain.com
 
 if [ "$#" == "0" ]; then
     echo "You need tu supply at least one argument!"
@@ -23,12 +22,13 @@ fi
 
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
-'.com' '.hu' \
-'.net' '.info' '.org' '.biz' '.mobi' \
-'.eu' '.ru' '.co.uk' '.com.au' \
-'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
-'.tel' '.tv' '.cc' \
-'.in' '.it' '.sk' \
+'.com' \
+#'.hu' \
+#'.net' '.info' '.org' '.biz' '.mobi' \
+#'.eu' '.ru' '.co.uk' '.com.au' \
+#'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
+#'.tel' '.tv' '.cc' \
+#'.in' '.it' '.sk' \
 )
 
 ELEMENTS=${#DOMAINS[@]}
