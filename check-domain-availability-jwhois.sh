@@ -38,8 +38,8 @@ while (( "$#" )); do
       jwhois $1${DOMAINS[${i}]} | egrep -q \
       '^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
     if [ $? -eq 0 ]; then
-        echo "$1${DOMAINS[${i}]} : available" else
-        echo "$1${DOMAINS[${i}]} : registered / not found"
+        echo "$1${DOMAINS[${i}]} : available"; else
+        echo "$1${DOMAINS[${i}]} : registered / not found";
     fi
   done
 
