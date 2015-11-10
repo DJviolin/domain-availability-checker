@@ -4,7 +4,6 @@
 # linuxconfig.org
 # Please copy, share, redistribute and improve
 
-# http://linuxconfig.org/check-domain-name-availability-with-bash-and-whois
 # USAGE
 # Make script executable:
 # $ chmod +x check-domain-availability-jwhois.sh
