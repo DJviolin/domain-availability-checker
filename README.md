@@ -1,1 +1,1 @@
-# Domain NAvailability Checker
+# Domain Availability Checker
