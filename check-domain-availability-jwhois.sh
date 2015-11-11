@@ -27,8 +27,9 @@ fi
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
 '.com' \
+'.biz' \
 #'.hu' \
-#'.net' '.info' '.org' '.biz' '.mobi' \
+#'.net' '.info' '.org' '.mobi' \
 #'.eu' '.ru' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
 #'.tel' '.tv' '.cc' \
