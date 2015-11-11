@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Name: Check for domain name availability
-# linuxconfig.org
-# Please copy, share, redistribute and improve
+# $ heroku run bash --app powerful-woodland-4042
 
 # USAGE
 # Make script executable:
@@ -29,12 +27,12 @@ fi
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
 '.com' \
-'.hu' \
-'.net' '.info' '.org' '.biz' '.mobi' \
-'.eu' '.ru' '.co.uk' '.com.au' \
-'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
-'.tel' '.tv' '.cc' \
-'.in' '.it' '.sk' \
+#'.hu' \
+#'.net' '.info' '.org' '.biz' '.mobi' \
+#'.eu' '.ru' '.co.uk' '.com.au' \
+#'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
+#'.tel' '.tv' '.cc' \
+#'.in' '.it' '.sk' \
 )
 
 ELEMENTS=${#DOMAINS[@]}
