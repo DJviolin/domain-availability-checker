@@ -26,9 +26,8 @@
 # Original regex:
 #'^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
 
-# REGEX PAIRS:
-# .COM, .NET, .EDU = ^Registrar IANA ID
-# .hu = ^record created
+# REGEX problems:
+# '.net'
 
 if [ "$#" == "0" ]; then
     echo "You need tu supply at least one argument!"
@@ -43,9 +42,11 @@ DOMAINS=( \
 '.org' \
 '.net' \
 '.info' \
-'.hu' \
-'.mobi' \
-'.co' '.eu' '.ws' '.co.uk' '.com.au' \
+'.cc' \
+'.ws' \
+# \
+#'.hu' \
+#'.co' '.eu' '.mobi' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
 #'.sex' '.xxx' \
 #'.tel' '.tv' '.cc' \
@@ -60,7 +61,7 @@ while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
-      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Expiration Date|Registry Reserved Name'
+      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Expiration Date|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
     if [ $? -eq 0 ]; then
         echo -e "$1${DOMAINS[${i}]}    \t\t registered";
     else
