@@ -29,6 +29,11 @@
 # REGEX problems:
 # '.net'
 
+# FULL REGEXP:
+# 'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Expiration Date|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
+
+ECHODATE=(`date +%y/%m/%d_%H:%M:%S`)
+
 if [ "$#" == "0" ]; then
     echo "You need tu supply at least one argument!"
     exit 1
@@ -37,13 +42,13 @@ fi
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
 '.com' \
-'.biz' \
-'.me' \
-'.org' \
-'.net' \
-'.info' \
-'.cc' \
-'.ws' \
+#'.biz' \
+#'.me' \
+#'.org' \
+#'.net' \
+#'.info' \
+#'.cc' \
+#'.ws' \
 # \
 #'.hu' \
 #'.co' '.eu' '.mobi' '.co.uk' '.com.au' \
@@ -62,10 +67,11 @@ while (( "$#" )); do
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
       'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Expiration Date|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
+      $TLDREGEX
     if [ $? -eq 0 ]; then
-        echo -e "$1${DOMAINS[${i}]}    \t\t registered";
+        echo -e "$1${DOMAINS[${i}]}\tregistered\t"$ECHODATE |& tee --append output/registered.txt
     else
-        echo -e "$1${DOMAINS[${i}]}    \t\t available / missing regexp";
+        echo -e "$1${DOMAINS[${i}]}\tavailable / missing regexp\t"$ECHODATE |& tee --append output/available.txt
     fi
   done
 
