@@ -45,7 +45,7 @@ DOMAINS=( \
 '.info' \
 '.hu' \
 '.mobi' \
-#'.co' '.eu' '.ws' '.co.uk' '.com.au' \
+'.co' '.eu' '.ws' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
 #'.sex' '.xxx' \
 #'.tel' '.tv' '.cc' \
@@ -60,11 +60,11 @@ while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
-      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created|^\% This query returned 1 object|^Created On|^Expiration Date|Registry Reserved Name'
+      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Expiration Date|Registry Reserved Name'
     if [ $? -eq 0 ]; then
         echo -e "$1${DOMAINS[${i}]}    \t\t registered";
     else
-        echo -e "$1${DOMAINS[${i}]}    \t\t available [or not found because of missing regexp...]";
+        echo -e "$1${DOMAINS[${i}]}    \t\t available / missing regexp";
     fi
   done
 
