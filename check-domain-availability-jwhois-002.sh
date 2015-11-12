@@ -36,12 +36,12 @@ fi
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
 '.com' \
-#'.biz' \
-#'.me' \
-#'.org' \
-#'.net' \
-#'.info' \
-'.hu' '.xyz' \
+'.biz' \
+'.me' \
+'.org' \
+'.net' \
+'.info' \
+#'.hu' \
 #'.fm' '.mobi' \
 #'.co' '.eu' '.ws' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
@@ -58,11 +58,11 @@ while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
-      '^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created'
+      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created|^\% This query returned 1 object'
     if [ $? -eq 0 ]; then
-        echo "$1${DOMAINS[${i}]} : registered (or not found by missing regexp)";
+        echo "$1${DOMAINS[${i}]} : registered";
     else
-        echo "$1${DOMAINS[${i}]} : available";
+        echo "$1${DOMAINS[${i}]} : available (or not found by missing regexp)";
     fi
   done
 
