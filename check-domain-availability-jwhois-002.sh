@@ -58,9 +58,9 @@ while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
-      '^Registrar IANA ID|^record created'
+      '^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created'
     if [ $? -eq 0 ]; then
-        echo "$1${DOMAINS[${i}]} : registered / not found";
+        echo "$1${DOMAINS[${i}]} : registered (or not found by missing regexp)";
     else
         echo "$1${DOMAINS[${i}]} : available";
     fi
