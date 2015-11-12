@@ -41,7 +41,7 @@ DOMAINS=( \
 '.org' \
 '.net' \
 '.info' \
-#'.hu' \
+'.hu' \
 #'.fm' '.mobi' \
 #'.co' '.eu' '.ws' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
@@ -60,9 +60,9 @@ while (( "$#" )); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
       'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created|^\% This query returned 1 object'
     if [ $? -eq 0 ]; then
-        echo -e "$1${DOMAINS[${i}]} \t\t registered";
+        echo -e "$1${DOMAINS[${i}]}    \t\t registered";
     else
-        echo -e "$1${DOMAINS[${i}]} \t\t available [or not found because of missing regexp...]";
+        echo -e "$1${DOMAINS[${i}]}    \t\t available [or not found because of missing regexp...]";
     fi
   done
 
