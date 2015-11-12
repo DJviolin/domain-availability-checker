@@ -24,6 +24,10 @@
 # Original regex:
 #'^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
 
+# REGEX PAIRS:
+# .COM, .NET, .EDU = ^Registrar IANA ID
+# .hu = ^record created
+
 if [ "$#" == "0" ]; then
     echo "You need tu supply at least one argument!"
     exit 1
@@ -53,12 +57,12 @@ ELEMENTS=${#DOMAINS[@]}
 while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
-      jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching \
-      '^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
+      jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
+      '^Registrar IANA ID|^record created'
     if [ $? -eq 0 ]; then
-        echo "$1${DOMAINS[${i}]} : available";
-    else
         echo "$1${DOMAINS[${i}]} : registered / not found";
+    else
+        echo "$1${DOMAINS[${i}]} : available";
     fi
   done
 
