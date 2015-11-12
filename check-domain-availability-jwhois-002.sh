@@ -20,6 +20,8 @@
 
 # BLACKLISTED:
 # [whois.ausregistry.net.au]
+# TLD not having WHOIs server:
+# '.fm' -> http://dot.fm/whois.html
 
 # Original regex:
 #'^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
@@ -42,7 +44,7 @@ DOMAINS=( \
 '.net' \
 '.info' \
 '.hu' \
-#'.fm' '.mobi' \
+'.mobi' \
 #'.co' '.eu' '.ws' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
 #'.sex' '.xxx' \
@@ -58,7 +60,7 @@ while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
-      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created|^\% This query returned 1 object'
+      'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|^Registry Domain ID|^Creation Date|^Registrar WHOIS Server|^Registrar URL|^Registrar IANA ID|^record created|^\% This query returned 1 object|^Created On|^Expiration Date|Registry Reserved Name'
     if [ $? -eq 0 ]; then
         echo -e "$1${DOMAINS[${i}]}    \t\t registered";
     else
