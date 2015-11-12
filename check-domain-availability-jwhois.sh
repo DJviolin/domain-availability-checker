@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# $ heroku run bash --app powerful-woodland-4042
+# Name: Check for domain name availability 
+# linuxconfig.org 
+# Please copy, share, redistribute and improve 
 
 # USAGE
 # Make script executable:
@@ -11,7 +13,7 @@
 # WINDOWS: $ jwhois com. whois.iana.org
 # LINUX: $ jwhois -h whois.iana.org com
 # BASIC USAGE: jwhois domain.com
-# jwhois -c jwhois.conf --force-lookup --disable-cache domain.com
+# jwhois -c jwhois.conf domain.com
 
 # Configuration File (2015-09-12):
 # https://github.com/robert-scheck/jwhois/blob/master/example/jwhois.conf
@@ -28,11 +30,18 @@ fi
 DOMAINS=( \
 '.com' \
 '.biz' \
+'.me' \
+'.org' \
+'.net' \
+'.info' \
 #'.hu' \
-#'.net' '.info' '.org' '.mobi' \
-#'.eu' '.ru' '.co.uk' '.com.au' \
-#'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' \
+#'.fm' '.mobi' \
+#'.co' '.eu' '.ws' '.co.uk' '.com.au' \
+#'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
+#'.sex' '.xxx' \
 #'.tel' '.tv' '.cc' \
+# Need citizenship \
+#'.ru' \
 #'.in' '.it' '.sk' \
 )
 
@@ -41,8 +50,8 @@ ELEMENTS=${#DOMAINS[@]}
 while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
-      jwhois --force-lookup --disable-cache $1${DOMAINS[${i}]} | egrep -q \
-      'No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
+      jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | egrep -q \
+      '^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
     if [ $? -eq 0 ]; then
         echo "$1${DOMAINS[${i}]} : available";
     else
