@@ -41,8 +41,8 @@ fi
 
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
-'.com' \
-#'.biz' \
+#'.com' \
+'.biz' \
 #'.me' \
 #'.org' \
 #'.net' \
@@ -50,7 +50,7 @@ DOMAINS=( \
 #'.cc' \
 #'.ws' \
 # \
-'.hu' \
+#'.hu' \
 #'.co' '.eu' '.mobi' '.co.uk' '.com.au' \
 #'.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' \
 #'.sex' '.xxx' \
