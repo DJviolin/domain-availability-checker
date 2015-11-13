@@ -67,7 +67,6 @@ while (( "$#" )); do
   for (( i=0;i<$ELEMENTS;i++)); do
       jwhois --force-lookup --disable-cache -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
       'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
-      $TLDREGEX
     if [ $? -eq 0 ]; then
         echo -e "$1${DOMAINS[${i}]}\tregistered\t"$ECHODATE |& tee --append output/registered.txt
     else
