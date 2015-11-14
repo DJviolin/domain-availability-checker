@@ -24,16 +24,18 @@ var timeStamp = function() {
   var minutes = d.getMinutes();
   var seconds = d.getSeconds();
   var milliseconds = d.getMilliseconds();
-  var time = year + '.' + month + '.' + day + '. ' + hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+  //var time = year + '.' + month + '.' + day + '. ' + hours + ':' + minutes + ':' + seconds + ':' + milliseconds;
+  var time = year + '.' + month + '.' + day + '. ' + hours + ':' + minutes + ':' + seconds;
   return time;
 };
 
 //better to be const
-var domainExtensions = ['.com', '.biz'];
+var domainExtensions = ['.com', '.cm', '.biz'];
 
 // print process.argv
 process.argv.slice(2).forEach(function(val, index, array) {
   domainExtensions.forEach(function(tld) {
-     console.log(index + ': ' + val + '' + tld + ' █ ' + timeStamp());
+    //console.log(index + ' █ ' + val + '' + tld + ' █ ' + timeStamp());
+    console.log(val + '' + tld + ' █ ' + timeStamp());
   });
 });
