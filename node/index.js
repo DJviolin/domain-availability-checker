@@ -19,8 +19,13 @@ var flagHelp = function() {
   var bottomSep = '\n▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽';
   var appname = 'Domain Checker'
   var contact = 'Istvan Lantos <info@LantosIstvan.com>'
-  var helptext = 'This file\'s location:\n' + ' ' + process.argv[1] + '\n\n' + 'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
-
+  var helptext = 
+    'This file\'s location:\n' + ' ' + process.argv[1] + '\n' + 
+    'Node.js executible location:\n' + ' ' + process.execPath + '\n\n' + 
+    'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 
+    'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 
+    'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 
+    'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
   return '\n' + upperSep + appname + '\n' + flagVersion() + '\nby ' + contact + '\n\n' + helptext + bottomSep;
 };
 
