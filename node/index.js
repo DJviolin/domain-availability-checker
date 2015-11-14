@@ -10,10 +10,16 @@
 // http://justindavis.co/2014/11/24/using-command-line-arguments-in-a-node-script/
 // https://www.npmjs.com/package/yargs
 
-var appname = 'Domain Checker'
-var version = 'v1.0.0';
-var contact = 'Istvan Lantos <info@LantosIstvan.com>'
-var helptext = 'This file\'s location:\n' + process.argv[1] + '\n\n' + 'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
+var flagHelp = function() {
+  var upperSep = '△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△\n';
+  var bottomSep = '\n▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽';
+  var appname = 'Domain Checker'
+  var version = 'v1.0.0';
+  var contact = 'Istvan Lantos <info@LantosIstvan.com>'
+  var helptext = 'This file\'s location:\n' + ' ' + process.argv[1] + '\n\n' + 'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
+
+  return '\n' + upperSep + appname + '\n' + version + '\nby ' + contact + '\n\n' + helptext + bottomSep;
+};
 
 var timeStamp = function() {
   var d = new Date();
@@ -41,7 +47,7 @@ if (args <= 0) {
 }
 
 if((args == '-h' && args.length <= 1) || args == '--help'){
-  console.log('\n' + '△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△\n' + appname + '\n' + version + '\nby ' + contact + '\n\n' + helptext + '\n▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽');
+  console.log(flagHelp());
   process.exit(-1);
 }
 
