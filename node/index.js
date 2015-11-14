@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 // Usage:
 // https://nodejs.org/api/process.html#process_process_argv
 // $ node index.js one two=three four
@@ -15,6 +17,10 @@ Output:
 
 // SEPARATORS: ░▒▓█▓▒░
 
+// http://stackoverflow.com/questions/23023650/is-it-possible-to-pass-a-flag-to-gulp-to-have-it-run-tasks-in-different-ways
+// http://justindavis.co/2014/11/24/using-command-line-arguments-in-a-node-script/
+// https://www.npmjs.com/package/yargs
+
 var timeStamp = function() {
   var d = new Date();
   var year = d.getFullYear();
@@ -29,13 +35,25 @@ var timeStamp = function() {
   return time;
 };
 
-//better to be const
-var domainExtensions = ['.com', '.cm', '.biz'];
+var args = process.argv.slice(2);
+
+if (args.length <= 0) {
+  console.log("NO INPUT WAS DETECTED!\nFor get more help about the usage:\nUse the executible with \"-h\" or \"--help\" flags");
+  process.exit(-1);
+}
+
+var domainExtensions = ['.com', '.cm', '.biz']; // better to be const
 
 // print process.argv
-process.argv.slice(2).forEach(function(val, index, array) {
+args.forEach(function(val, index, array) {
   domainExtensions.forEach(function(tld) {
     //console.log(index + ' █ ' + val + '' + tld + ' █ ' + timeStamp());
     console.log(val + '' + tld + ' █ ' + timeStamp());
   });
 });
+
+/*if(args == '-f'){
+  console.log('Fahrenheit');
+} else {
+  console.log('Celsius');
+}*/

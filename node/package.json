@@ -1,0 +1,20 @@
+{
+  "name": "domain-checker",
+  "version": "1.0.0",
+  "author": "Istvan Lantos <info@lantosistvan.com>",
+  "description": "A simple application which is finding available domains",
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "domain-checker": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DJviolin/domain-availability-checker.git"
+  },
+  "dependencies": {
+  }
+}
