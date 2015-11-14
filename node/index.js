@@ -23,8 +23,9 @@ var flagHelp = function() {
     'This file\'s location:\n' + ' ' + process.argv[1] + '\n' + 
     'Node.js executible location:\n' + ' ' + process.execPath + '\n\n' + 
     'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 
-    'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 
-    'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 
+    'FLAGS:' + '\n -h, --help\t\tThis guide' + 
+    '\n -v, --version\t\t' + 'Print program version' + 
+    '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 
     'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
   return '\n' + upperSep + appName + '\n' + flagVersion() + '\nby ' + contact + '\n\n' + helpText + bottomSep;
 };
@@ -67,7 +68,7 @@ if(args == '-v' || args == '--version'){
 var domainExtensions = ['.com', '.cm', '.biz']; // better to be const
 
 // print process.argv
-args.forEach(function(val, index, array) {
+args.forEach(function(val, index) {
   domainExtensions.forEach(function(tld) {
     //console.log(index + ' █ ' + val + '' + tld + ' █ ' + timeStamp());
     console.log(val + '' + tld + ' █ ' + timeStamp());
