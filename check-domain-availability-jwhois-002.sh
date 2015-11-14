@@ -41,8 +41,8 @@ fi
 
 ### GoDaddy TLDS: https://www.godaddy.com/tlds/gtld.aspx - Only checked: .global
 DOMAINS=( \
-#'.com' \
-'.biz' \
+'.com' \
+#'.biz' \
 #'.me' \
 #'.org' \
 #'.net' \

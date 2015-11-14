@@ -32,7 +32,7 @@ var timeStamp = function() {
 var domainExtensions = ['.com', '.biz'];
 
 // print process.argv
-process.argv.forEach(function(val, index, array) {
+process.argv.slice(2).forEach(function(val, index, array) {
   domainExtensions.forEach(function(tld) {
      console.log(index + ': ' + val + '' + tld + ' █ ' + timeStamp());
   });
