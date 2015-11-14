@@ -17,16 +17,16 @@ var flagVersion = function() {
 var flagHelp = function() {
   var upperSep = '△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△△\n';
   var bottomSep = '\n▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽▽';
-  var appname = 'Domain Checker'
+  var appName = 'Domain Checker'
   var contact = 'Istvan Lantos <info@LantosIstvan.com>'
-  var helptext = 
+  var helpText = 
     'This file\'s location:\n' + ' ' + process.argv[1] + '\n' + 
     'Node.js executible location:\n' + ' ' + process.execPath + '\n\n' + 
     'USAGE:\n $ node --harmony [APPNAME] [FLAGS] [ARGUMENTS]\n\n' + 
     'FLAGS:' + '\n -h, --help\t\tThis guide' + '\n -v, --version\t\t' + 
     'Print program version' + '\n -t, --tld\t\tDomain TLDs [.com .cm .biz .net]' + '\n\n' + 
     'ARGUMENTS:' + '\n For example: [DomainName1 DomainName2 ...]';
-  return '\n' + upperSep + appname + '\n' + flagVersion() + '\nby ' + contact + '\n\n' + helptext + bottomSep;
+  return '\n' + upperSep + appName + '\n' + flagVersion() + '\nby ' + contact + '\n\n' + helpText + bottomSep;
 };
 
 var timeStamp = function() {
@@ -54,7 +54,7 @@ if (args <= 0) {
   process.exit(-1);
 }
 
-if((args == '-h' && args.length <= 1) || args == '--help'){
+if(args == '-h' || args == '--help'){
   console.log(flagHelp());
   process.exit(-1);
 }
