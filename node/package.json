@@ -1,7 +1,7 @@
 {
   "name": "domain-checker",
   "version": "1.0.0",
-  "author": "Istvan Lantos <info@lantosistvan.com>",
+  "author": "Istvan Lantos <info@LantosIstvan.com>",
   "description": "A simple application which is finding available domains",
   "license": "MIT",
   "engines": {
