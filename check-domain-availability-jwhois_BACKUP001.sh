@@ -44,8 +44,9 @@
 # https://drive.google.com/folderview?id=0B4y35FiV1wh7fngteFhHQUN2Y1B5eUJBNHZUemJYQV9VWlBUb3JlX0xBdWVZTWtSbVBneU0&usp=drive_web#list
 # https://www.youtube.com/watch?v=LDNYT9Ai2NU
 
-# Bash Cheat Sheet
-# https://gist.github.com/LeCoupa/122b12050f5fb267e75f
+ECHODATE=(`date +%y/%m/%d_%H:%M:%S`)
+
+#INPUT=(`cat input.txt`)
 
 #if [ "$#" == "0" ]; then
 #    echo "You need tu supply at least one argument!"
@@ -73,23 +74,12 @@ DOMAINS=( \
 #'.in' '.it' '.sk' \
 )
 
-ECHODATE=(`date +%y/%m/%d_%H:%M:%S`)
-
-VALUE=$(<input.txt)
-INPUT=(`echo "$VALUE"`)
-
 ELEMENTS=${#DOMAINS[@]}
-# ${#array[@]} # to find out how many values there are in the array
-# ${#array[i]} # to find out the length of any element in the array
-# $# holds the number
-# echo $? # displays the exit status of the last command
-# -eq # equal
 
-#while (( "$#" )); do
 while (( "$#" )); do
 
   for (( i=0;i<$ELEMENTS;i++)); do
-      jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --quiet \
+      jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf $1${DOMAINS[${i}]} | grep --perl-regexp --text --null --only-matching --quiet \
       'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
     if [ $? -eq 0 ]; then
         echo -e "$1${DOMAINS[${i}]}\tregistered\t"$ECHODATE |& tee --append output/registered.txt

@@ -16,12 +16,12 @@
 <h1>Number generator</h1>
 
 <script>
-var foo = new Array(10177);
+var foo = new Array(100000);
 
 for(var i=0;i<foo.length;i++){
   //document.write('\'' + (i+1) + '.com' + '\'' + ', ');
   //document.write((i+1) + ' ');
-  if(i>(10034-2)) {
+  if(i>(0-2)) {
     document.write((i+1) + ' ');
   }
 }
@@ -62,7 +62,7 @@ for (var i = 1; i <= array; ++i) {
 
 var output = [];
 
-Util.getAllPossibleCombinations(array, 4, output);
+Util.getAllPossibleCombinations(array, 2, output);
 
 //console.log(output);
 
