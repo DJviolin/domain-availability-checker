@@ -43,9 +43,9 @@ while read input; do
   for (( i=0;i<${#DOMAINS[@]};i++)); do
   jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | MATCH="$(grep -oPa '^.*\b(clientTransferProhibited)\b.*$')"
   if [ $? -eq 0 ]; then
-    echo -e "$input${DOMAINS[$i]}\tregistered\t"`date +%y/%m/%d_%H:%M:%S`"\t"; echo -ne "${MATCH}" |& tee --append output/registered.txt
+    echo -e "$input${DOMAINS[$i]}\tregistered\t" $(date +%y/%m/%d_%H:%M:%S) "\t" "$MATCH" |& tee --append output/registered.txt
   else
-    echo -e "$input${DOMAINS[$i]}\tavailable\t"`date +%y/%m/%d_%H:%M:%S`"\t"; echo -ne "${MATCH}" |& tee --append output/available.txt
+    echo -e "$input${DOMAINS[$i]}\tavailable\t" $(date +%y/%m/%d_%H:%M:%S) "\t" "$MATCH" |& tee --append output/available.txt
   fi
   done
 done < "$1"
