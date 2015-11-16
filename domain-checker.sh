@@ -4,6 +4,9 @@
 # sed -i 's/\r//g' script.sh
 # ./domain-checker.sh input.txt
 
+# Remove line breaks
+# [\r\n]+
+
 # jwhois.conf
 # https://github.com/jonasob/jwhois/blob/master/example/jwhois.conf
 
@@ -16,7 +19,8 @@ DOMAINS=( '.com' \
 
 while read input; do
   for (( i=0;i<${#DOMAINS[@]};i++)); do
-  MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(clientTransferProhibited)\b.*$')
+  #jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPaq 'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
+  MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Expiration Date|Creation Date|Update Date)\b.*$' | tr '\n' '\t')
   if [ $? -eq 0 ]; then
     echo -e "$input${DOMAINS[$i]}\tregistered\t" $(date +%y/%m/%d_%H:%M:%S) "\t" "$MATCH" |& tee --append output/registered.txt
   else
