@@ -8,6 +8,7 @@
 # http://www.regular-expressions.info/completelines.html
 # ^.*\b(clientTransferProhibited|CLIENT TRANSFER PROHIBITED|Registry Domain ID)\b.*$
 # http://stackoverflow.com/questions/7103531/how-to-get-the-part-of-file-after-the-line-that-matches-grep-expression-first
+# http://stackoverflow.com/questions/5385234/using-sed-awk-to-print-lines-with-matching-pattern-or-another-matching-pattern
 
 DOMAINS=( \
 '.com' \
