@@ -29,18 +29,20 @@ DOMAINS=( \
 #'.in' '.it' '.sk' \
 )
 
-#ECHODATE=(`date +%y/%m/%d_%H:%M:%S`)
+ECHODATE=(`date +%y/%m/%d_%H:%M:%S`)
+
+REGEX_OPTIONS=(echo 'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on')
 
 #MATCH1=(`sed -n -e '1,/Domain Name/,$p'`)
 #MATCH1_ECHO=echo "$MATCH1"
 
 while read input; do
   for (( i=0;i<${#DOMAINS[@]};i++)); do
-  jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPaq 'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
+  jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPaq "$REGEX_OPTIONS"
   if [ $? -eq 0 ]; then
-    echo -e "$input${DOMAINS[$i]}\tregistered\t"`date +%y/%m/%d_%H:%M:%S`"\t" |& tee --append output/registered.txt
+    echo -e "$input${DOMAINS[$i]}\tregistered\t"$ECHODATE"\t" |& tee --append output/registered.txt
   else
-    echo -e "$input${DOMAINS[$i]}\tavailable\t"`date +%y/%m/%d_%H:%M:%S`"\t" |& tee --append output/available.txt
+    echo -e "$input${DOMAINS[$i]}\tavailable\t"$ECHODATE"\t" |& tee --append output/available.txt
   fi
   done
 done < "$1"
