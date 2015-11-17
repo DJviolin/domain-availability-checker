@@ -2,9 +2,16 @@
 
 # USAGE
 # sed -i 's/\r//g' script.sh
-# ./domain-checker.sh input.txt
+# ./domain-checker.sh randomizer/input.txt
 # jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Update Date|Creation Date|Expiration Date)\b.*$')
-# jwhois --force-lookup --disable-cache -c jwhois.conf lantosistvan.com | grep -oPa '^.*\b(Update Date|Creation Date|Expiration Date)\b.*$'
+# jwhois --force-lookup --disable-cache -c jwhois.conf lantosistvan.com | grep -oPa '^.*\b(Transferred Date|Updated Date|Creation Date|Registration Date|Expiration Date|REGISTRAR HOLD|REGISTRY HOLD|REDEMPTION GRACE PERIOD|REDEMPTIONPERIOD)\b.*$'
+
+# Random generator
+# for combo in  {a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9}; do echo $combo; done > 0L-random.txt
+
+# Commands using WHOIS
+# http://www.commandlinefu.com/commands/using/whois/sort-by-votes
+# jwhois domainnametocheck.com | grep match
 
 # Remove line breaks
 # [\r\n]+
@@ -15,14 +22,15 @@
 
 #grep -oPaq 'clientTransferProhibited|CLIENT TRANSFER PROHIBITED|clientUpdateProhibited|CLIENT UPDATE PROHIBITED|clientRenewProhibited|CLIENT RENEW PROHIBITED|clientDeleteProhibited|CLIENT DELETE PROHIBITED|Registry Domain ID|Creation Date|Registrar WHOIS Server|Registrar URL|Registrar IANA ID|record created|\% This query returned 1 object|Created On|Registry Reserved Name|Registrant Contact Name|Fax|Registered on'
 
-DOMAINS=( '.com' \
+DOMAINS=( \
+'.com' \
 #'.biz' \
 #'.me' '.org' '.net' '.info' '.cc' '.ws' '.hu' '.co' '.eu' '.mobi' '.co.uk' '.com.au' '.online' '.xyz' '.global' '.site' '.tech' '.space' '.news' '.club' '.rocks' '.design' '.company' '.life' '.website' '.nyc' '.guru' '.photography' '.today' '.solutions' '.media' '.world' '.sex' '.xxx' '.tel' '.tv' '.cc' '.ru' '.in' '.it' '.sk' \
 )
 
 while read input; do
   for (( i=0;i<${#DOMAINS[@]};i++)); do
-  MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Transferred Date|Updated Date|Creation Date|Registration Date|Expiration Date)\b.*$')
+  MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Transferred Date|Updated Date|Creation Date|Registration Date|Expiration Date|REGISTRAR HOLD|REGISTRY HOLD|REDEMPTION GRACE PERIOD|REDEMPTIONPERIOD)\b.*$')
   if [ $? -eq 0 ]; then
     echo -e "$input${DOMAINS[$i]}\tregistered\t"$(date +%y/%m/%d_%H:%M:%S)"\t$MATCH" | tr '\n' '\t' |& tee --append output/registered.txt
     echo "" |& tee --append output/registered.txt
