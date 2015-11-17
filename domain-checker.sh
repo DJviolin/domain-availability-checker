@@ -6,9 +6,6 @@
 # jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Update Date|Creation Date|Expiration Date)\b.*$')
 # jwhois --force-lookup --disable-cache -c jwhois.conf lantosistvan.com | grep -oPa '^.*\b(Transferred Date|Updated Date|Creation Date|Registration Date|Expiration Date|REGISTRAR HOLD|REGISTRY HOLD|REDEMPTION GRACE PERIOD|REDEMPTIONPERIOD)\b.*$'
 
-# Random generator
-# for combo in  {a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9}{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9}; do echo $combo; done > 0L-random.txt
-
 # Commands using WHOIS
 # http://www.commandlinefu.com/commands/using/whois/sort-by-votes
 # jwhois domainnametocheck.com | grep match
