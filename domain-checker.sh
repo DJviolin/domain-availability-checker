@@ -2,7 +2,7 @@
 
 # USAGE
 # sed -i 's/\r//g' script.sh
-# ./domain-checker.sh randomizer/input.txt
+# cd ~/sf_bash/domain-availability-checker && ./domain-checker.sh randomizer/input.txt
 # jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$input${DOMAINS[$i]}" | grep -oPa '^.*\b(Update Date|Creation Date|Expiration Date)\b.*$')
 # jwhois --force-lookup --disable-cache -c jwhois.conf lantosistvan.com | grep -oPa '^.*\b(Transferred Date|Updated Date|Creation Date|Registration Date|Expiration Date|REGISTRAR HOLD|REGISTRY HOLD|REDEMPTION GRACE PERIOD|REDEMPTIONPERIOD)\b.*$'
 
