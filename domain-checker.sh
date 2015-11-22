@@ -8,6 +8,8 @@
 
 # It will only deleting the lines when the script totally finishing (not terminated)
 
+# just deleting (rm -f "$1")or erasing (> "$1") the file after the final done is simpler, unless there's another process appending new domain names to the file while it's being processed
+
 DOMAINS='.com' # simple, space-separated list of domain suffixes
 
 while read input; do
