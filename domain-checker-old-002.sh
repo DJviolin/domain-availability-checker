@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # USAGE
-# cd ~/sf_bash/domain-availability-checker && ./domain-checker.sh files/input.txt
+# cd ~/sf_bash/domain-availability-checker && ./domain-checker.sh randomizer/AALL-002.txt
 
 # jwhois.conf
 # https://github.com/jonasob/jwhois/blob/master/example/jwhois.conf
 
-DOMAINS='.com' # simple, space-separated list of domain suffixes
+DOMAINS='.com .co' # simple, space-separated list of domain suffixes
 
 while read input; do
   for d in $DOMAINS; do
@@ -16,7 +16,7 @@ while read input; do
 
     out=$(printf '%s\t%s' "$(date +%y/%m/%d_%H:%M:%S)" "$MATCH" | tr '\n' '\t')
 
-    printf '%s\t%s\t%s\n' "$input$d" "$regavail" "$out" |& tee --append "files/$regavail.txt"
+    printf '%s\t%s\t%s\n' "$input$d" "$regavail" "$out" |& tee --append "output/$regavail.txt"
 
     seen+="$input\|"
   done
