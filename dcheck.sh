@@ -18,7 +18,8 @@
 # https://github.com/rfc1036/whois
 # https://gist.github.com/thde/3890aa48e03a2b551374
 
-TLD='.com'
+#TLD='.com'
+TLD='.hu'
 
 while read -r domain; do
   #MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$domain$TLD" | grep -oPa '^.*\b(Updated Date|Creation Date|Expiration Date)\b.*\$')
