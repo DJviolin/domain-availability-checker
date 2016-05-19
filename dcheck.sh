@@ -19,6 +19,7 @@
 while read -r domain; do
   #MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$domain$TLD" | grep -oPa '^.*\b(Updated Date|Creation Date|Expiration Date)\b.*\$')
   #MATCH=$(whois -H "$domain.com" | grep -oPa '^.*(Updated Date|Creation Date|Expiration Date).*$')
+  #
   #whois -H $domain'.com' | grep -oPaq '^.*(Updated Date|Creation Date|Expiration Date).*$'
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.*'
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.'
