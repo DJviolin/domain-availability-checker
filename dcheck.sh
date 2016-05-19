@@ -24,6 +24,7 @@ while read -r domain; do
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.*'
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.'
   #
+  #whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
   whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
