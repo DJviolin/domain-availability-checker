@@ -20,8 +20,9 @@
 # https://www.iana.org/domains/root/db
 
 TLD='.com'
-TLD_HOST='whois.verisign-grs.com'
+#TLD_HOST='whois.verisign-grs.com'
 #TLD='.hu'
+#TLD_HOST='whois.nic.hu'
 
 while read -r domain; do
   #MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$domain$TLD" | grep -oPa '^.*\b(Updated Date|Creation Date|Expiration Date)\b.*\$')
@@ -40,7 +41,9 @@ while read -r domain; do
   #  whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
   #fi
   #
-  whois -h $TLD_HOST -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
+  #
+  #whois -h $TLD_HOST -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
+  whois -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain$TLD | tee --append 'files/registered.txt'
