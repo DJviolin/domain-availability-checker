@@ -18,6 +18,13 @@
 # https://github.com/rfc1036/whois
 # https://gist.github.com/thde/3890aa48e03a2b551374
 # https://www.iana.org/domains/root/db
+# https://github.com/weppos/whois/blob/master/data/tld.json
+
+# WHOIS SERVERS
+# whois.verisign-grs.com
+# whois.iana.org
+# com.whois-servers.net
+#
 
 TLD='.com'
 #TLD_HOST='whois.verisign-grs.com'
