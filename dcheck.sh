@@ -17,8 +17,10 @@
 # whois.conf
 # https://github.com/rfc1036/whois
 # https://gist.github.com/thde/3890aa48e03a2b551374
+# https://www.iana.org/domains/root/db
 
 TLD='.com'
+TLD_HOST='whois.verisign-grs.com'
 #TLD='.hu'
 
 while read -r domain; do
@@ -38,7 +40,7 @@ while read -r domain; do
   #  whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
   #fi
   #
-  whois -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
+  whois -h $TLD_HOST -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain$TLD | tee --append 'files/registered.txt'
