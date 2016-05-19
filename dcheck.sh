@@ -18,8 +18,8 @@
 # https://github.com/rfc1036/whois
 # https://gist.github.com/thde/3890aa48e03a2b551374
 
-#TLD='.com'
-TLD='.hu'
+TLD='.com'
+#TLD='.hu'
 
 while read -r domain; do
   #MATCH=$(jwhois --force-lookup --disable-cache --no-redirect -c jwhois.conf "$domain$TLD" | grep -oPa '^.*\b(Updated Date|Creation Date|Expiration Date)\b.*\$')
@@ -31,11 +31,14 @@ while read -r domain; do
   #
   #whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
   #whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
-  if [ $TLD = '.hu' ]; then
-    whois -H $domain$TLD | grep -oPaq '.*record created.*'
-  else
-    whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
-  fi
+  #
+  #if [ $TLD = '.hu' ]; then
+  #  whois -H $domain$TLD | grep -oPaq '.*record created.*'
+  #else
+  #  whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
+  #fi
+  #
+  whois -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain$TLD | tee --append 'files/registered.txt'
