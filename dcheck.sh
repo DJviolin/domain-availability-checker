@@ -10,7 +10,7 @@
 # $ time LANG=C LC_ALL=C echo files/test.txt | grep -Foaq '^.*(Creation Date).*$'
 
 # CONSOLE MATCH
-# $ LANG=hu_HU whois -H domain.hu | grep -oPa '.*(record created|No match).*'
+# $ LANG=hu_HU whois -h whois.nic.hu -H domain.hu | grep -oPa '.*(record created|No match).*'
 
 # jwhois.conf
 # https://github.com/jonasob/jwhois/blob/master/example/jwhois.conf
