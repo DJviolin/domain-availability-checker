@@ -29,7 +29,12 @@ while read -r domain; do
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.'
   #
   #whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
-  whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
+  #whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
+  if [ $TLD = '.hu' ]; then
+    whois -H $domain$TLD | grep -oPaq '.*record created.*'
+  else
+    whois -H $domain$TLD | grep -oPaq '.*Creation Date.*'
+  fi
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain$TLD | tee --append 'files/registered.txt'
