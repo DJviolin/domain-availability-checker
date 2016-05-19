@@ -16,10 +16,12 @@ while read -r domain; do
   #MATCH=$(whois -H "$domain.com" | grep -oPa '^.*(Updated Date|Creation Date|Expiration Date).*$')
   whois -H $domain'.com' | grep -oPaq '^.*(Updated Date|Creation Date|Expiration Date).*$'
   if [ $? -eq 0 ]; then
-    echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
+    #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
+    echo $domain'.com' | tee --append files/registered.txt
     #echo "" |& tee --append remove/registered.txt
     #echo -e "$domain$TLD\tregistered\t$MATCH" | tr '\n' '\t' |& tee --append files/registered.txt
   else
-    echo $domain'.com' | tee --append files/available.txt && echo '    available'
+    #echo $domain'.com' | tee --append files/available.txt && echo '    available'
+    echo $domain'.com' | tee --append files/available.txt
   fi
 done < files/domains.txt
