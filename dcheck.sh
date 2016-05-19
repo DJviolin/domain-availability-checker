@@ -6,8 +6,6 @@
 # $ cd /c/www/bash/domain-availability-checker && time ./dcheck.sh
 
 # TEST
-# $ cd /c/www/bash/domain-availability-checker && time LANG=C echo files/test.txt | grep -oPaq '^.*(Creation Date).*$'
-# $ LC_ALL=C locale
 # $ cd /c/www/bash/domain-availability-checker && time LC_ALL=C echo files/test.txt | grep -Foaq '^.*(Creation Date).*$'
 
 # jwhois.conf
@@ -35,4 +33,4 @@ while read -r domain; do
     #echo $domain'.com' | tee --append files/available.txt && echo '    available'
     echo $domain'.com' | tee --append files/available.txt
   fi
-done < 'files/domains-time.txt'
+done < files/domains.txt
