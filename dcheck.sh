@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # USAGE
-# cd /c/www/bash/domain-availability-checker && ./dcheck.sh
-# cd /c/www/bash/domain-availability-checker && time ./dcheck.sh
+# $ cd /c/www/bash/domain-availability-checker
+# $ LC_ALL=C ./dcheck.sh
+# $ cd /c/www/bash/domain-availability-checker && time ./dcheck.sh
 
 # TEST
-# cd /c/www/bash/domain-availability-checker && time echo files/test.txt | grep -oPaq '^.*(Creation Date).*$'
+# $ cd /c/www/bash/domain-availability-checker && time LANG=C echo files/test.txt | grep -oPaq '^.*(Creation Date).*$'
+# $ LC_ALL=C locale
+# $ cd /c/www/bash/domain-availability-checker && time LC_ALL=C echo files/test.txt | grep -oPaq '^.*(Creation Date).*$'
 
 # jwhois.conf
 # https://github.com/jonasob/jwhois/blob/master/example/jwhois.conf
@@ -22,7 +25,7 @@ while read -r domain; do
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.*'
   #whois -H $domain'.com' | grep -oPaq '.*Creation Date.'
   #
-  whois -H $domain'.com' | grep -oPaq '.*Creation Date.*'
+  whois -H $domain'.com' | grep -Foaq '.*Creation Date.*'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain'.com' | tee --append files/registered.txt
