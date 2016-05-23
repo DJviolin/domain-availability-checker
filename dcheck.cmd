@@ -4,11 +4,13 @@ REM USAGE
 REM $ cd c:\www\bash\domain-availability-checker
 REM $ dcheck.cmd
 
-REM set /p DOMAINS=<files/domains.txt
 REM for /F "tokens=*" %%A in ("files/domains.txt") do [process] %%A
 set "TLD=.com"
-set "COMMAND=whoiscl -r -n"
-for /F "tokens=*" %%i in (files/domains-win.txt) do %COMMAND% %%i
+REM /F "tokens=*" %%i in (files/domains-win.txt) do %COMMAND% %%i ^| @echo %GREP%
 REM echo %DOMAINS%%TLD%
-
 REM whoiscl -r -n %DOMAINS%%TLD% | FINDSTR
+
+FOR /F "tokens=*" %%i in (%cd%\files\domains-win.txt) do (
+  REM do what you want with %%A here
+  whoiscl -r -n %%i ^| FINDSTR "Registrant Name:"
+)
