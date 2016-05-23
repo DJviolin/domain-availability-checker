@@ -3,9 +3,9 @@
 # USAGE
 # $ cd /c/www/bash/domain-availability-checker
 # $ LANG=C LC_ALL=C ./dcheck.sh
-# $ cd /c/www/bash/domain-availability-checker && time ./dcheck.sh
 
 # TEST
+# $ cd /c/www/bash/domain-availability-checker && time ./dcheck.sh
 # $ cd /c/www/bash/domain-availability-checker
 # $ time LANG=C LC_ALL=C echo files/test.txt | grep -Foaq '^.*(Creation Date).*$'
 
