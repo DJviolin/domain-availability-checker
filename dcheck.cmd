@@ -13,5 +13,6 @@ SET "TLD=.com"
 
 FOR /F "tokens=*" %%i in (%cd%\files\domains-win.txt) do (
   REM @echo %%i%TLD%
-  whoiscl -r -n %%i%TLD% ^| FINDSTR "lantosistvan.com"
+  REM whoiscl -r -n %%i%TLD% ^| FINDSTR "lantosistvan.com"
+  whoiscl -r -n %%i%TLD%
 )
