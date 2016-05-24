@@ -1,0 +1,76 @@
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM @ECHO OFF 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM USAGE 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM $ cd c:\www\bash\domain-availability-checker 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM $ dcheck.cmd 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM LOGGING 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\REM $ dcheck.cmd > dcheck.log 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\SET "TLD=.com" 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\FOR /F "tokens=*" %i in (c:\www\bash\domain-availability-checker\files\domains-win.txt) do (
+whoiscl -r -n %i.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=%i.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: %i.com )  ELSE (ECHO Available: %i.com ) 
+) 
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n lantosistvan.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=lantosistvan.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: lantosistvan.com )  ELSE (ECHO Available: lantosistvan.com ) 
+) 
+Registered: lantosistvan.com
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n domain.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=domain.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: domain.com )  ELSE (ECHO Available: domain.com ) 
+) 
+Registered: domain.com
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n domaindfgzd89fg678.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=domaindfgzd89fg678.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: domaindfgzd89fg678.com )  ELSE (ECHO Available: domaindfgzd89fg678.com ) 
+) 
+Registered: domaindfgzd89fg678.com
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n domainf67d786d7f6.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=domainf67d786d7f6.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: domainf67d786d7f6.com )  ELSE (ECHO Available: domainf67d786d7f6.com ) 
+) 
+Registered: domainf67d786d7f6.com
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n domainsd76sdf8g7.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=domainsd76sdf8g7.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: domainsd76sdf8g7.com )  ELSE (ECHO Available: domainsd76sdf8g7.com ) 
+) 
+Registered: domainsd76sdf8g7.com
+
+[m[32m]9;8;"USERNAME"\@]9;8;"COMPUTERNAME"\ [92mc:\www\bash\domain-availability-checker[90m
+[90m$[m ]9;12\(
+whoiscl -r -n domaindf8g76df.com   | FINDSTR /I /C:"Registrant Name"  1>nul 2>&1  
+ SET "OUTPUT=domaindf8g76df.com"  
+ IF not "domaindf8g76df.com" == "" (ECHO Registered: domaindf8g76df.com )  ELSE (ECHO Available: domaindf8g76df.com ) 
+) 
+Registered: domaindf8g76df.com
