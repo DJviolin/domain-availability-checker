@@ -11,8 +11,6 @@ REM whoiscl -r -n %DOMAINS%%TLD% | FINDSTR
 
 SET "TLD=.com"
 
-ECHO Hello world>NUL
-
 FOR /F "tokens=*" %%i in (%cd%\files\domains-win.txt) do (
   REM @echo %%i%TLD%
   REM whoiscl -r -n %%i%TLD% | FINDSTR /I /C:"Registrant Name" 2>&1
@@ -20,10 +18,10 @@ FOR /F "tokens=*" %%i in (%cd%\files\domains-win.txt) do (
   whoiscl -r -n %%i%TLD% | FINDSTR /I /C:"Registrant Name" 2>&1
   SET "OUTPUT=%%i%TLD%"
 
-  IF not "%OUTPUT%" == "%%i%TLD%" (
-    ECHO Available: %%i%TLD%
-  ) ELSE (
+  IF not "%OUTPUT%" == "" (
     ECHO Registered: %%i%TLD%
+  ) ELSE (
+    ECHO Available: %%i%TLD%
   )
 
 )
