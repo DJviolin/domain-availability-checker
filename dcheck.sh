@@ -51,6 +51,7 @@ while read -r domain; do
   #
   #whois -h $TLD_HOST -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
   whois -H $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
+  #/c/Users/Lanti/cmd/whoiscl -r -n $domain$TLD | grep -oPaq '^.*(Creation Date|record created).*$'
   if [ $? -eq 0 ]; then
     #echo $domain'.com' | tee --append files/registered.txt && echo '   registered'
     echo $domain$TLD | tee --append 'files/registered.txt'
